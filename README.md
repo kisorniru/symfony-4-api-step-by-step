@@ -21,45 +21,37 @@ Dillinger uses a number of open source projects to work properly:
 * [Gulp] - the streaming build system
 * [PhpStorm] - Super flexible and rich IDE for project development.
 
-### Installation
+### For New Project Setup GuideLine [Step by Step]
 
 This project requires latest [composer](https://getcomposer.org/) version and [git](https://git-scm.com/) to run.
 
+* If you already have virtual host setup and not require internal web server [here my project name is : symfony-api-boilerplate.local].
 ```sh
-$ git clone http://117.58.246.154:100/siddique/afids-api.git
-$ cd afids-api
-$ composer update
+$ composer create-project symfony/website-skeleton symfony-api-boilerplate.local
 ```
 
-* copy and paste ``` .env.dist ``` file where it is AND rename it as ``` .env ``` file
-* open ```.env``` file and change inside DATABASE_URL
-    - DataBase_userName
-    - DataBase_password
-    - DataBase_host
-    - DataBase_name
-
+* Switch to project directory
 ```sh
-$ ---
-$ DATABASE_URL=mysql://DataBase_userName:DataBase_password@DataBase_host:3306/DataBase_name
-$ ---
+$ cd symfony-api-boilerplate.local
 ```
 
-# After Installation
+* If you require internal web server than 
+```sh
+$ composer require symfony/web-server-bundle --dev
+```
 
-run the bellow command from inside the project 
 * to start listening development server
-
 ```sh
 $ php bin/console server:start
 ```
 
-* start browsing `http://127.0.0.1:8001`
+* start browsing `http://127.0.0.1:8000`
 
 * to stop listening development server
-
 ```sh
 $ php bin/console server:stop
 ```
+
 # Developed By
 
-* [bGlobal Interactive Limited](https://www.bGlobal.com)
+* [Md. Noor-A-Alam Siddique](https://kisorniru.github.io/)
