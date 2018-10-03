@@ -1,0 +1,6 @@
+
+api_app_test:
+    resource: "api/test_route.yaml"
+    prefix: /test
+
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-

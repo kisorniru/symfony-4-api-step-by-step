@@ -9,7 +9,7 @@ This README would normally document whatever steps are necessary to get your app
 * API version 1.0.0
 * API documentation
 * API for Angelflight mobile application
-* [Developed By](https://kisorniru.github.io/)
+* [Developed By: Md. Noor-A-Alam Siddique](https://kisorniru.github.io/)
 
 ### Tech
 
@@ -50,6 +50,62 @@ $ php bin/console server:start
 * to stop listening development server
 ```sh
 $ php bin/console server:stop
+```
+
+* Symfony provides a utility called the "Security Checker" to check whether your project's dependencies contain any known security vulnerability
+```sh
+$ composer require sensiolabs/security-checker --dev
+```
+
+* This is a complex topic. But useful for developing tools to serialize and deserialize your objects
+```sh
+$ composer require symfony/serializer
+```
+
+* Create a ``` .htaccess ``` into your public directory and bellow code into their to remove index.php from url
+```sh
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+```
+
+* Create a folder called ``` Routes ``` into ``` src ``` directory
+* Inside ``` Routes ``` folder Create a file ``` routes.yml ``` and add bellow code
+	- ```api``` and ```test_route.yaml``` is what we are going to create
+	- ```test``` is using for prefix
+```sh
+api_app_test:
+    resource: "api/test_route.yaml"
+    prefix: /test
+```
+
+* Create a folder called ``` api ``` into ``` Routes ``` directory
+* Inside ``` api ``` folder Create a file ``` test_route.yaml ``` and add bellow code
+	- ```TestController``` is a controller and ```indexAction``` is a function, what we create later
+	- ```test-one``` is using for last route
+```sh
+api_app_test_one:
+    path: /test-one
+    methods: GET
+    controller: App\Controller\TestController::indexAction
 ```
 
 # Developed By
