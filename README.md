@@ -108,6 +108,15 @@ api_app_test_one:
     controller: App\Controller\TestController::indexAction
 ```
 
+* Create a file inside ```Controller``` called ```TestController.php```
+	- Extends base ```Controller``` with this ```TestController``` class
+	- Use ```Controller\Controller``` with this ```TestController``` class
+	- Use ```HttpFoundation\Response``` with this ```TestController``` class
+	- Use ```Serializer\SerializerInterface``` with this ```TestController``` class
+
+* Inside ``` TestController.php ``` create a public function called ```indexAction```
+	- Add ```SerializerInterface``` into the ```indexAction``` function
+
 # Developed By
 
 * [Md. Noor-A-Alam Siddique](https://kisorniru.github.io/)
