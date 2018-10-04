@@ -117,6 +117,220 @@ api_app_test_one:
 * Inside ``` TestController.php ``` create a public function called ```indexAction```
 	- Add ```SerializerInterface``` into the ```indexAction``` function
 
+
+* Creating Database with installing Doctrine support via the ORM pack
+```sh
+composer require symfony/orm-pack
+```
+	- This command will create ```Entity```, ```Migrations``` and ```Repository``` folder inside ```src``` folder
+	- In addition under ```config/packages``` it'll create ```doctrine.yaml``` and ```doctrine_migrations.yaml``` file
+	- At the same time under ```config/packages/prod``` folder it'll create another ```doctrine.yaml``` file
+
+* To create a database by command please got to the ```.env``` file and change the ```db_user```, ```db_password``` and ```db_name``` and run the bellow command, which will create the database for you.
+```sh
+php bin/console doctrine:database:create
+```
+
+* For our project we are not using orm type as ```annotations```, where as we are using orm type as ```xml```. [Personally I myself and other develoer also feel orm type ```xml``` is most handy rather than using ```annotations```]
+
+* Only annotation mapping is supported by ```php bin/console make:Entity``` so we have to make our xml by typing it.
+
+* Now, we are going to change the orm type
+	- to do this, open the ```config/packages/doctrine.yaml``` file
+	- find the line ```type: annotation``` and replace it with ```type: xml```
+
+* For more generalized our project we are changing the orm mapping directory [it's just an practise, not mandatory]
+	- to do this, open the ```config``` folder
+	- create a folder called ```doctrine```
+	- now open the ```config/packages/doctrine.yaml``` file
+	- find the line ```dir: '%kernel.project_dir%/src/Entity'``` and replace it with ```dir: '%kernel.project_dir%/config/doctrine'```
+
+* Though we are not using ```annotations```, so we have to create entity file by manually
+	- open ```src/Entity``` folder and create two entity files called ```Offices.php``` and ```OfficeEmployees.php```
+	- to present the object relation between entities we created two entity here
+	- now placed the bellow code into ```Offices.php``` and followed by ```OfficeEmployees.php```
+
+```sh
+<?php
+
+namespace App\Entity;
+
+class Offices
+{
+    /**
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * @var string
+     */
+    protected $office_name;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOfficeName()
+    {
+        return $this->office_name;
+    }
+
+    /**
+     * @param string $office_name
+     */
+    public function setOfficeName(string $office_name)
+    {
+        $this->office_name = $office_name;
+    }
+}
+```
+* here variable type ```Offices``` is a special type of variable, which indicate that this is variable which is connected with other table's [here is ```Offices``` or ```src\Entity\Offices.php```] id. In Symfony autometically add ```_id``` with the variable name.
+```sh
+<?php
+
+namespace App\Entity;
+
+class OfficeEmployees
+{
+    /**
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * @var Offices
+     */
+    protected $offices;
+
+    /**
+     * @var string
+     */
+    protected $emp_name;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmpName()
+    {
+        return $this->emp_name;
+    }
+
+    /**
+     * @param string $emp_name
+     */
+    public function setEmpName(string $emp_name)
+    {
+        $this->emp_name = $emp_name;
+    }
+
+    /**
+     * @return Offices
+     */
+    public function getOffices()
+    {
+        return $this->offices;
+    }
+
+    /**
+     * @param Offices $offices
+     */
+    public function setOffices(Offices $offices)
+    {
+        $this->offices = $offices;
+    }
+}
+```
+
+* To use Doctrine Extensions: Timestampable, Sluggable, Translatable, etc
+```sh
+composer require gedmo/doctrine-extensions
+```
+
+* Now inside ```config/doctrine``` folder create a file ```Offices.orm.xml``` and paste bellow codes
+```sh
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\Offices" table="offices">
+
+        <id name="id" column="id" type="integer">
+
+            <generator strategy="AUTO" />
+
+        </id>
+
+        <field name="office_name" type="string" nullable="true" />
+
+    </entity>
+
+</doctrine-mapping>
+```
+
+* Again inside ```config/doctrine``` folder create a file ```Offices.orm.xml``` and paste bellow codes
+```sh
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\OfficeEmployees" table="office_employees">
+
+        <id name="id" column="id" type="integer">
+
+            <generator strategy="AUTO" />
+
+        </id>
+
+        <field name="emp_name" type="string" nullable="true" />
+
+        <one-to-one field="offices" target-entity="App\Entity\Offices">
+
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+
+            <gedmo:blameable on="create"/>
+
+            <join-column name="offices_id" referenced-column-name="id" nullable="false"/>
+
+        </one-to-one>
+
+    </entity>
+
+</doctrine-mapping>
+```
+
+* Here ```one-to-one``` or ```one-to-many``` or ```many-to-one``` define the relationship with tables
+
+* Now run the command for creating migration file by which next time developer can track the changes
+```sh
+php bin/console make:migration
+```
+
+* Our migration file is ready to execute now. After running the bellow command create the tables into database.
+```sh
+php bin/console doctrine:migrations:migrate
+```
+
 # Developed By
 
 * [Md. Noor-A-Alam Siddique](https://kisorniru.github.io/)
