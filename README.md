@@ -388,7 +388,7 @@ web_app_index:
     <head>
         <meta charset="UTF-8">
 
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %} {% endblock %}</title>
 
         {% block stylesheets %}
         	
@@ -402,17 +402,17 @@ web_app_index:
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light navbar-bg mb-5">
-            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="#">Site Name</a>
+            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="{{ app.request.schemeAndHttpHost }}">Site Name</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto">
                      <li class="nav-item">
-                       <a style="color: #000;" class="nav-link" href="#">Nav-1</a>
+                       <a style="color: #000;" class="nav-link" href="#">Home</a>
                      </li>
                      <li class="nav-item">
-                       <a style="color: #000;" class="nav-link" href="#">Nav-2</a>
+                       <a style="color: #000;" class="nav-link" href="{{ app.request.baseUrl }}">Create</a>
                      </li>
                    </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -421,7 +421,7 @@ web_app_index:
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown" style="margin-right: 75px;">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="{{ app.request.schemeAndHttpHost }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img class="nav-profile-img rounded-circle" src="{{ asset('images/dummy_logo_1.jpg') }}">
                 </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
