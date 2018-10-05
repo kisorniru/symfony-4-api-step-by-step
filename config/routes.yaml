@@ -2,6 +2,6 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-api_app:
+web_app:
   resource: "../src/Routes/routes.yml"
-  prefix: /api/v1
+  prefix: /web

@@ -1,6 +1,0 @@
-    #----start :: Test One
-api_app_test_one:
-    path: /test-one
-    methods: GET
-    controller: App\Controller\TestController::indexAction
-    #----end :: Test One
