@@ -276,12 +276,12 @@ php bin/console doctrine:migrations:migrate
 	- Extends base ```Controller``` with this two controller
 	- Use ```Controller\Controller``` with this two controller
 	- Use ```HttpFoundation\Response``` with this two controller
-	- Use ```Serializer\SerializerInterface``` with two controller
+	<!-- - Use ```Serializer\SerializerInterface``` with two controller -->
 
-* For Serializer we are going to use the bellow bundle. This is a complex topic. But useful for developing tools to serialize and deserialize your objects.
+<!-- * For Serializer we are going to use the bellow bundle. This is a complex topic. But useful for developing tools to serialize and deserialize your objects.
 ```sh
 $ composer require symfony/serializer
-```
+``` -->
 * Now we are starting with ```OfficesController.php``` controller
 * Inside ``` OfficesController.php ``` create a public function called ```index```, which will show a hello message for us. So, lets do something fun part.
 	- Run ```composer require twig``` command to add ```twig```. Twig is a view template engine. In symfony you can use two different view engine for view write. Apart from ```twig``` you can use ```php``` [ reference : https://symfony.com/doc/2.0/cookbook/templating/PHP.html]. But remember, Symfony recomand ```twig``` instead of any other things. I am using twig for this documentation.
@@ -291,6 +291,7 @@ $ composer require symfony/serializer
 	- Create a folder called ```Offices``` where we'll store all ```Offices``` related files.
 	- First of all create a file called ```index.html.twig``` inside ```Offices``` folder
 	- add bellow html code into ```index.html.twig``` for an example purpose
+	- Twig is a view design template engine. To read more about it visit it's official website documentation [https://twig.symfony.com/]. 
 ```sh
 <h1> {{ title }}</h1>
 
@@ -307,11 +308,11 @@ $ composer require symfony/serializer
 
 * Now we are going to call this view file from controller. Open ```OfficesController.php``` file and paste the bellow code inside ```index``` function.
 ```sh
-$pageTitle = "Yahooo!!! our first page is landed.";
+	$pageTitle = "Home Page";
 
-        return $this->render('Offices/index.html.twig', [
-            'title' => $pageTitle
-        ]);
+    return $this->render('Offices/index.html.twig', [
+        'title' => $pageTitle
+    ]);
 ```
 
 	<!-- - Add ```SerializerInterface``` into the ```indexAction``` function -->
@@ -349,17 +350,17 @@ web_app:
 ```
 	- here ```prefix``` is not mendatory.
 
-* Inside ``` Routes ``` folder Create a file ``` routes.yml ``` and a folder ```web```
+* Inside ``` Routes ``` folder Create a file ``` routes.yml ``` and a folder ```web``` and again inside ```web``` create another folder ```offices```
 * Now Open the ``` routes.yml ``` file and add bellow code
 ```sh
 web_app_offices:
-    resource: "web/web_routes.yaml"
-    # prefix: /web
+    resource: "web/offices/routes_for_offices.yaml"
+    prefix: /offices
 ```
 	- here ```prefix``` is not mendatory.
 
-* Inside ``` web ``` folder Create a file ``` web_routes.yaml ``` and add bellow code
-	- ```TestController``` is a controller and ```index``` is a function, what we create earlier
+* Inside ``` offices ``` folder create a file ``` routes_for_offices.yaml ``` and add bellow code
+	- ```OfficesController``` is a controller and ```index``` is a function, what we create earlier
 	- path ```index``` is the last part of our route
 ```sh
 web_app_index:
@@ -368,7 +369,125 @@ web_app_index:
     controller: App\Controller\OfficesController::index
 ```
 
-* Now browse ```http://127.0.0.1:8000/web/index``` Seeeeeeeee!!!! we are done!!!
+* Now browse ```http://127.0.0.1:8000/web/offices/index``` Seeeeeeeee!!!! we are done!!!
+
+* Now we will add some office name into ```offices``` table from our another view file.
+
+* Oh! now lets do some stylesheet stuf by creating ```css``` and ```images``` folder into ```public``` folder. We are creating ```css``` folder for stylesheets and ```images``` for assets into public folder. we are using public folder for regular access. Now create ```style.css``` file into css folder and add bellow code to test our own stylesheet test.
+```sh
+	h1 {
+		color: #F00001;
+	}
+```
+	- run ```composer require asset``` command to access asset() function.
+
+* Now open ```templates/base.html.twig``` file and bellow command
+```sh
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}
+        	
+        	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        {% endblock %}
+
+    </head>
+    
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light navbar-bg mb-5">
+            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="#">Site Name</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                     <li class="nav-item">
+                       <a style="color: #000;" class="nav-link" href="#">Nav-1</a>
+                     </li>
+                     <li class="nav-item">
+                       <a style="color: #000;" class="nav-link" href="#">Nav-2</a>
+                     </li>
+                   </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown" style="margin-right: 75px;">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class="nav-profile-img rounded-circle" src="{{ asset('images/dummy_logo_1.jpg') }}">
+                </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Drop-Item-1</a>
+                            <a class="dropdown-item" href="#">Drop-Item-2</a>
+                            <a class="dropdown-item" href="#">Drop-Item-3</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        {% block body %} {% endblock %}
+
+        {% block javascripts %}
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+            <script>
+                $('.dropdown-toggle').dropdown();
+
+            </script>
+
+        {% endblock %}
+
+    </body>
+
+</html>
+```
+
+* Again open our created ```index.html.twig``` and paste the bellow code
+```sh
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+	<div class="container">
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <div class="show-article-container p-3 mt-4">
+	                <div class="row">
+	                    <div class="col-sm-12">
+
+	                        <img class="show-article-img" src="{{ asset('images/dummy_1.png') }}">
+	                        
+	                    </div>
+	                </div>
+	                <div class="row">
+	                    <div class="col-sm-12">
+	                        <div class="article-text">
+	                        	<h1>What is Lorem Ipsum?</h1>
+	                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+{% endblock %}
+```
 
 # Developed By
 

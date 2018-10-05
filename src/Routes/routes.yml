@@ -1,6 +1,6 @@
 
 web_app_offices:
-    resource: "web/web_routes.yaml"
-    # prefix: /web
+    resource: "web/offices/routes_for_offices.yaml"
+    prefix: /offices
 
 #-*-*-*-*-*-*-*-*-*-*-*-*-*-

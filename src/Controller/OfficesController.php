@@ -17,7 +17,7 @@ class OfficesController extends Controller
 {
     public function index(){
 
-        $pageTitle = "Yahooo!!! our first page is landed.";
+        $pageTitle = "Home Page";
 
         return $this->render('Offices/index.html.twig', [
             'title' => $pageTitle

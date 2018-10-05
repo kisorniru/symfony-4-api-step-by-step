@@ -1,0 +1,6 @@
+#----start :: Test One
+web_app_index:
+  path: /index
+  methods: GET
+  controller: App\Controller\OfficesController::index
+  #----end :: Test One
