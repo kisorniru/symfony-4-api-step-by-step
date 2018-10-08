@@ -22,6 +22,11 @@ class Offices
     protected $office_name;
 
     /**
+     * @var string
+     */
+    protected $office_description;
+
+    /**
      * @return int
      */
     public function getId()
@@ -43,5 +48,21 @@ class Offices
     public function setOfficeName(string $office_name)
     {
         $this->office_name = $office_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOfficeDescription()
+    {
+        return $this->office_description;
+    }
+
+    /**
+     * @param string $office_description
+     */
+    public function setOfficeDescription(string $office_description)
+    {
+        $this->office_description = $office_description;
     }
 }

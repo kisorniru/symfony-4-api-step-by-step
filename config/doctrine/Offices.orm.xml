@@ -13,6 +13,8 @@
 
         <field name="office_name" type="string" nullable="true" />
 
+        <field name="office_description" type="string" nullable="true" />
+
     </entity>
 
 </doctrine-mapping>

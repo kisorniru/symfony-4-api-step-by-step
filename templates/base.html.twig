@@ -17,36 +17,54 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light navbar-bg mb-5">
-            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="{{ app.request.schemeAndHttpHost }}">Site Name</a>
+
+            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="{{ app.request.schemeAndHttpHost }}">
+                <img class="nav-profile-img rounded-circle" src="{{ asset('images/dummy_logo_1.jpg') }}">
+            </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
                 <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                       <a style="color: #000;" class="nav-link" href="#">Home</a>
-                     </li>
-                     <li class="nav-item">
-                       <a style="color: #000;" class="nav-link" href="{{ app.request.baseUrl }}">Create</a>
-                     </li>
-                   </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: #000;" href="{{ asset('web/offices/index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Offices
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ asset('web/offices/index') }}">Office List</a>
+                                <a class="dropdown-item" href="{{ asset('web/offices/create') }}">New Office</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: #000;" href="{{ asset('web/offices/index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Office Employee
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ asset('web/offices/create') }}">Office Employee List</a>
+                                <a class="dropdown-item" href="{{ asset('web/offices/create') }}">New Office Employee</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </ul>
+
                 <form class="form-inline my-2 my-lg-0">
+
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+
                 </form>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown" style="margin-right: 75px;">
-                        <a class="nav-link dropdown-toggle" href="{{ app.request.schemeAndHttpHost }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="nav-profile-img rounded-circle" src="{{ asset('images/dummy_logo_1.jpg') }}">
-                </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Drop-Item-1</a>
-                            <a class="dropdown-item" href="#">Drop-Item-2</a>
-                            <a class="dropdown-item" href="#">Drop-Item-3</a>
-                        </div>
-                    </li>
-                </ul>
+
             </div>
+
         </nav>
 
         {% block body %} {% endblock %}

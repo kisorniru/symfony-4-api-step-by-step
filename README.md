@@ -107,6 +107,11 @@ class Offices
     protected $office_name;
 
     /**
+     * @var string
+     */
+    protected $office_description;
+
+    /**
      * @return int
      */
     public function getId()
@@ -128,6 +133,22 @@ class Offices
     public function setOfficeName(string $office_name)
     {
         $this->office_name = $office_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOfficeDescription()
+    {
+        return $this->office_description;
+    }
+
+    /**
+     * @param string $office_description
+     */
+    public function setOfficeDescription(string $office_description)
+    {
+        $this->office_description = $office_description;
     }
 }
 ```
@@ -217,6 +238,8 @@ composer require gedmo/doctrine-extensions
         </id>
 
         <field name="office_name" type="string" nullable="true" />
+
+        <field name="office_description" type="string" nullable="true" />
 
     </entity>
 
@@ -310,8 +333,11 @@ $ composer require symfony/serializer
 ```sh
 	$pageTitle = "Home Page";
 
+    $offices = $this->getDoctrine()->getRepository(Offices::class)->findAll();
+
     return $this->render('Offices/index.html.twig', [
-        'title' => $pageTitle
+        'title' => $pageTitle,
+        'offices' => $offices,
     ]);
 ```
 
@@ -344,6 +370,10 @@ $ composer require symfony/serializer
 
 * To more organize our application we are creating a folder called ``` Routes ``` into ``` src ``` directory and going to map it with the main route file ```config/routes.yaml``` by add this code
 ```sh
+index:
+   path: /
+   controller: App\Controller\OfficesController::index
+
 web_app:
   resource: "../src/Routes/routes.yml"
   prefix: /web
@@ -391,9 +421,9 @@ web_app_index:
         <title>{% block title %} {% endblock %}</title>
 
         {% block stylesheets %}
-        	
-        	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+            
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
         {% endblock %}
 
@@ -402,36 +432,54 @@ web_app_index:
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light navbar-bg mb-5">
-            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="{{ app.request.schemeAndHttpHost }}">Site Name</a>
+
+            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="{{ app.request.schemeAndHttpHost }}">
+                <img class="nav-profile-img rounded-circle" src="{{ asset('images/dummy_logo_1.jpg') }}">
+            </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
                 <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                       <a style="color: #000;" class="nav-link" href="#">Home</a>
-                     </li>
-                     <li class="nav-item">
-                       <a style="color: #000;" class="nav-link" href="{{ app.request.baseUrl }}">Create</a>
-                     </li>
-                   </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: #000;" href="{{ asset('web/offices/index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Offices
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ asset('web/offices/create') }}">Office List</a>
+                                <a class="dropdown-item" href="{{ asset('web/offices/create') }}">New Office</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: #000;" href="{{ asset('web/offices/index') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Office Employee
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ asset('web/offices/create') }}">Office Employee List</a>
+                                <a class="dropdown-item" href="{{ asset('web/offices/create') }}">New Office Employee</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </ul>
+
                 <form class="form-inline my-2 my-lg-0">
+
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+
                 </form>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown" style="margin-right: 75px;">
-                        <a class="nav-link dropdown-toggle" href="{{ app.request.schemeAndHttpHost }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="nav-profile-img rounded-circle" src="{{ asset('images/dummy_logo_1.jpg') }}">
-                </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Drop-Item-1</a>
-                            <a class="dropdown-item" href="#">Drop-Item-2</a>
-                            <a class="dropdown-item" href="#">Drop-Item-3</a>
-                        </div>
-                    </li>
-                </ul>
+
             </div>
+
         </nav>
 
         {% block body %} {% endblock %}
@@ -462,29 +510,122 @@ web_app_index:
 
 {% block body %}
 
-	<div class="container">
-	    <div class="row">
-	        <div class="col-sm-12">
-	            <div class="show-article-container p-3 mt-4">
-	                <div class="row">
-	                    <div class="col-sm-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="show-article-container p-3 mt-4">
+                    <table id="offices" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Office Name</th>
+                            <th>Office Description</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% if offices %}
+                                {% for office in offices %}
+                                    <tr>
+                                        <td>{{ office.officeName }}</td>
+                                        <td>{{ office.officeDescription }}</td>
+                                        <td>
+                                            <a href="/web/offices/{{ office.id }}" class="btn btn-dark">Show</a>
+                                            <a href="/web/offices/edit/{{ office.id }}" class="btn btn-light">Edit</a>
+                                            <a href="#" class="btn btn-danger delete-article" data-id="{{ office.id }}">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="3">No offices to display</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	                        <img class="show-article-img" src="{{ asset('images/dummy_1.png') }}">
-	                        
-	                    </div>
-	                </div>
-	                <div class="row">
-	                    <div class="col-sm-12">
-	                        <div class="article-text">
-	                        	<h1>What is Lorem Ipsum?</h1>
-	                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+{% endblock %}
+```
+
+* Lets add some offices and for that inside ``` offices/routes_for_offices.yaml ``` folder add bellow code first
+```sh
+web_app_create:
+  path: /create
+  methods: ['GET','POST']
+  controller: App\Controller\OfficesController::create
+```
+
+* Before start with controller we are going to add a bundle ```form``` for easy to handle symfony form\
+```sh
+composer require form
+```
+
+* Add Bellow code with your controller
+```sh
+use App\Entity\Offices;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
+``` 
+* Now inside ``` OfficesController ``` controller create another function called ```create``` and paste the bellow code
+```sh
+    $pageTitle = "Create Page";
+
+    $offices = new Offices();
+
+    $form = $this->createFormBuilder($offices)
+            ->add('office_name', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('office_description', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('office_save', SubmitType::class, array('label' => 'Submit', 'attr' => array('class'=>'btn btn-primary mt-3')))
+            ->getForm();
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid())
+    {
+        $offices = $form->getData();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($offices);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('web_app_create');
+    }
+
+    return $this->render('Offices/create.html.twig', array(
+        'title' => $pageTitle,
+        'form' => $form->createView()
+    ));
+```
+
+* Now create ```create.html.twig``` and paste the bellow code
+```sh
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        
+        <div class="row">
+            
+            <div class="col-sm-12">
+                
+                {{ form_start(form) }}
+
+                {{ form_widget(form) }}
+
+                {{ form_end(form) }}
+                
+            </div>
+            
+        </div>
+        
+    </div>
 
 {% endblock %}
 ```

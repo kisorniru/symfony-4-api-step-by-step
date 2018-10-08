@@ -1,6 +1,13 @@
 #----start :: Test One
+
 web_app_index:
   path: /index
   methods: GET
   controller: App\Controller\OfficesController::index
+
+web_app_create:
+  path: /create
+  methods: ['GET','POST']
+  controller: App\Controller\OfficesController::create
+
   #----end :: Test One

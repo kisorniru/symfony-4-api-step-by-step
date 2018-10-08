@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+   path: /
+   controller: App\Controller\OfficesController::index
 
 web_app:
   resource: "../src/Routes/routes.yml"
