@@ -568,6 +568,7 @@ composer require form
 use App\Entity\Offices;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 ``` 
 * Now inside ``` OfficesController ``` controller create another function called ```create``` and paste the bellow code
@@ -578,7 +579,7 @@ use Symfony\Component\HttpFoundation\Request;
 
     $form = $this->createFormBuilder($offices)
             ->add('office_name', TextType::class, array('attr' => array('class' => 'form-control')))
-            ->add('office_description', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('office_description', TextareaType::class, array('attr' => array('class' => 'form-control')))
             ->add('office_save', SubmitType::class, array('label' => 'Submit', 'attr' => array('class'=>'btn btn-primary mt-3')))
             ->getForm();
 
@@ -592,7 +593,7 @@ use Symfony\Component\HttpFoundation\Request;
         $entityManager->persist($offices);
         $entityManager->flush();
 
-        return $this->redirectToRoute('web_app_create');
+        return $this->redirectToRoute('web_app_index');
     }
 
     return $this->render('Offices/create.html.twig', array(
@@ -628,6 +629,55 @@ use Symfony\Component\HttpFoundation\Request;
     </div>
 
 {% endblock %}
+```
+
+* lets show individual office details by clicking ```show``` button. For this create a view file called ```show.html.twig``` and paste the bellow code
+```sh
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>{{ offices.officeName }}</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>{{ offices.officeDescription }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+```
+
+* To call this page add a route  ``` routes_for_offices.yaml ``` by adding the bellow code
+```sh
+web_app_show:
+  path: /{id}
+  methods: GET
+  controller: App\Controller\OfficesController::show
+```
+
+* Lets create a function ```show``` and pass a parameter called ```id``` inside ```OfficesController``` controller and add the bellow code
+```sh
+    $pageTitle = "Show Page";
+
+    $offices = $this->getDoctrine()->getRepository(Offices::class)->find($id);
+
+    return $this->render('Offices/show.html.twig', [
+        'title' => $pageTitle,
+        'offices' => $offices,
+    ]);
 ```
 
 # Developed By

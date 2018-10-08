@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae9b9f56-bfac-4193-89f7-5677055c8cbb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony-api-boilerplate.local.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony-api-boilerplate.local.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/doctrine/Offices.orm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/doctrine/Offices.orm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/OfficesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OfficesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Offices.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Offices.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Routes/web/offices/routes_for_offices.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Routes/web/offices/routes_for_offices.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Offices/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Offices/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Offices/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Offices/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,21 +30,21 @@
           <entry key="env" value="2" />
           <entry key="gitignore" value="1" />
           <entry key="json" value="5" />
-          <entry key="php" value="19" />
-          <entry key="twig" value="12" />
+          <entry key="php" value="20" />
+          <entry key="twig" value="15" />
           <entry key="xml" value="4" />
-          <entry key="yaml" value="23" />
+          <entry key="yaml" value="24" />
           <entry key="yml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="5" />
-          <entry key="PHP" value="19" />
+          <entry key="PHP" value="20" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Twig" value="12" />
+          <entry key="Twig" value="15" />
           <entry key="XML" value="4" />
-          <entry key="YAML" value="28" />
+          <entry key="YAML" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -64,21 +52,21 @@
           <entry key="dummy" value="4" />
           <entry key="env" value="5" />
           <entry key="json" value="14" />
-          <entry key="php" value="1004" />
-          <entry key="twig" value="258" />
+          <entry key="php" value="1057" />
+          <entry key="twig" value="268" />
           <entry key="xml" value="27" />
-          <entry key="yaml" value="145" />
+          <entry key="yaml" value="163" />
           <entry key="yml" value="48" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="14" />
-          <entry key="PHP" value="1004" />
+          <entry key="PHP" value="1057" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Twig" value="258" />
+          <entry key="Twig" value="268" />
           <entry key="XML" value="27" />
-          <entry key="YAML" value="193" />
+          <entry key="YAML" value="211" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
@@ -91,24 +79,32 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/OfficesController.php">
+        <entry file="file://$PROJECT_DIR$/src/Routes/web/offices/routes_for_offices.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
-              <folding>
-                <element signature="e#120#143#0#PHP" expanded="true" />
-                <element signature="e#419#444#0#PHP" expanded="true" />
-                <element signature="e#1156#1182#1#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="228">
+              <caret line="12" selection-start-line="12" selection-end-line="15" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/Offices/index.html.twig">
+        <entry file="file://$PROJECT_DIR$/src/Controller/OfficesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+            <state relative-caret-position="623">
+              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+              <folding>
+                <element signature="e#120#143#0#PHP" expanded="true" />
+                <element signature="e#2103#2127#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Offices/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="23" column="10" lean-forward="true" selection-end-line="25" selection-end-column="14" />
               <folding>
                 <element signature="e#13#27#0#Twig" expanded="true" />
               </folding>
@@ -141,14 +137,15 @@
         <option value="$PROJECT_DIR$/templates/Offices/store.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/OfficesType.php" />
         <option value="$PROJECT_DIR$/src/Form/OfficesFormType.php" />
-        <option value="$PROJECT_DIR$/src/Routes/web/offices/routes_for_offices.yaml" />
         <option value="$PROJECT_DIR$/src/Entity/Offices.php" />
         <option value="$PROJECT_DIR$/config/doctrine/Offices.orm.xml" />
         <option value="$PROJECT_DIR$/templates/Offices/create.html.twig" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/OfficesController.php" />
         <option value="$PROJECT_DIR$/templates/Offices/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Routes/web/offices/routes_for_offices.yaml" />
+        <option value="$PROJECT_DIR$/templates/Offices/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/OfficesController.php" />
       </list>
     </option>
   </component>
@@ -253,6 +250,27 @@
             <path>
               <item name="symfony-api-boilerplate.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="symfony-api-boilerplate.local" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="symfony-api-boilerplate.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="symfony-api-boilerplate.local" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="symfony-api-boilerplate.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="symfony-api-boilerplate.local" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="offices" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="symfony-api-boilerplate.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="symfony-api-boilerplate.local" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -298,12 +316,12 @@
       <updated>1538581487172</updated>
       <workItem from="1538581488561" duration="13769000" />
       <workItem from="1538736431736" duration="8211000" />
-      <workItem from="1538998762326" duration="9679000" />
+      <workItem from="1538998762326" duration="11951000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31659000" />
+    <option name="totallyTimeSpent" value="33931000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="990" extended-state="6" />
@@ -476,13 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Offices/create.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Offices.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -497,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Routes/web/offices/routes_for_offices.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -511,24 +515,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/OfficesController.php">
+    <entry file="file://$PROJECT_DIR$/templates/Offices/create.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
-          <folding>
-            <element signature="e#120#143#0#PHP" expanded="true" />
-            <element signature="e#419#444#0#PHP" expanded="true" />
-            <element signature="e#1156#1182#1#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="475">
+          <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Offices/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
+        <state relative-caret-position="490">
           <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
           <folding>
             <element signature="e#13#27#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Offices/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="10" lean-forward="true" selection-end-line="25" selection-end-column="14" />
+          <folding>
+            <element signature="e#13#27#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Routes/web/offices/routes_for_offices.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" selection-start-line="12" selection-end-line="15" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/OfficesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#120#143#0#PHP" expanded="true" />
+            <element signature="e#2103#2127#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -10,4 +10,9 @@ web_app_create:
   methods: ['GET','POST']
   controller: App\Controller\OfficesController::create
 
+web_app_show:
+  path: /{id}
+  methods: GET
+  controller: App\Controller\OfficesController::show
+
   #----end :: Test One

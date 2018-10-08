@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Entity\Offices;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +41,7 @@ class OfficesController extends Controller
 
         $form = $this->createFormBuilder($offices)
                 ->add('office_name', TextType::class, array('attr' => array('class' => 'form-control')))
-                ->add('office_description', TextType::class, array('attr' => array('class' => 'form-control')))
+                ->add('office_description', TextareaType::class, array('attr' => array('class' => 'form-control')))
                 ->add('office_save', SubmitType::class, array('label' => 'Submit', 'attr' => array('class'=>'btn btn-primary mt-3')))
                 ->getForm();
 
@@ -61,6 +62,19 @@ class OfficesController extends Controller
             'title' => $pageTitle,
             'form' => $form->createView()
         ));
+
+    }
+
+    public function show(SerializerInterface $serializer, $id){
+
+        $pageTitle = "Show Page";
+
+        $offices = $this->getDoctrine()->getRepository(Offices::class)->find($id);
+
+        return $this->render('Offices/show.html.twig', [
+            'title' => $pageTitle,
+            'offices' => $offices,
+        ]);
 
     }
 
