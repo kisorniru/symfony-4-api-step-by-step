@@ -2,23 +2,31 @@
 
 # README #
 
-This documentation will help to jump start with [Symfony](https://symfony.com/). If you are familiar with different framework of php then 
+This documentation will help to jump start with [Symfony](https://symfony.com/). If you are familiar with different framework of php then this documentation is for you, otherwise not. Remember one thing, this is a dummy CRUD project using symfony which lets you to start Symfony quickly but not teach you Symfony. To do this you have to visit Symfony site. 
 
 ### What is this repository for? ###
 
-* API version 1.0.0
-* API documentation
-* API for Angelflight mobile application
+* web-server-bundle
+* security-checker
+* twig(https://twig.symfony.com/)
+* routing
+* form
+* form-type 
+* controller
+* entity
+* xml
+* orm
+* serializer
+* CRUD Application
 * [Developed By: Md. Noor-A-Alam Siddique](https://kisorniru.github.io/)
 
 ### Tech
 
 Dillinger uses a number of open source projects to work properly:
 
-* [Symfony 4.0.6] - Number one fastest PHP framework!
+* [Symfony 4.1.`*`] - Number one fastest PHP framework!
 * [Twig] -  Modern template engine for PHP.
 * [markdown-it] - Markdown parser done right. Fast and easy to extend.
-* [Gulp] - the streaming build system
 * [PhpStorm] - Super flexible and rich IDE for project development.
 
 ### For New Project Setup GuideLine [Step by Step]
