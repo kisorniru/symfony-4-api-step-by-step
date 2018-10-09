@@ -26,7 +26,7 @@
 										<td>
 											<a href="/web/offices/{{ office.id }}" class="btn btn-dark">Show</a>
 											<a href="/web/offices/edit/{{ office.id }}" class="btn btn-light">Edit</a>
-											<a href="#" class="btn btn-danger delete-article" data-id="{{ office.id }}">Delete</a>
+											<a href="#" class="btn btn-danger delete-office" data-id="{{ office.id }}">Delete</a>
 										</td>
 									</tr>
 								{% endfor %}
@@ -42,4 +42,8 @@
 	    </div>
 	</div>
 
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="/js/main-js.js"></script>
 {% endblock %}

@@ -15,4 +15,9 @@ web_app_show:
   methods: GET
   controller: App\Controller\OfficesController::show
 
+web_app_delete:
+  path: /delete/{id}
+  methods: DELETE
+  controller: App\Controller\OfficesController::delete
+
   #----end :: Test One

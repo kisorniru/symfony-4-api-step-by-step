@@ -484,7 +484,7 @@ web_app_index:
 
         {% block body %} {% endblock %}
 
-        {% block javascripts %}
+        {% block pagescripts %}
 
             <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -531,7 +531,7 @@ web_app_index:
                                         <td>
                                             <a href="/web/offices/{{ office.id }}" class="btn btn-dark">Show</a>
                                             <a href="/web/offices/edit/{{ office.id }}" class="btn btn-light">Edit</a>
-                                            <a href="#" class="btn btn-danger delete-article" data-id="{{ office.id }}">Delete</a>
+                                            <a href="#" class="btn btn-danger delete-office" data-id="{{ office.id }}">Delete</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -678,6 +678,76 @@ web_app_show:
         'title' => $pageTitle,
         'offices' => $offices,
     ]);
+```
+
+* Now we'll work for delete section. To call delete route we are going to add a route into ``` routes_for_offices.yaml ``` file
+```sh
+web_app_delete:
+  path: /delete/{id}
+  methods: DELETE
+  controller: App\Controller\OfficesController::delete
+```
+
+* We are adding some js stuff for alert us before delete. For that we are going to create a folder called ```js``` inside ```public``` folder and create a js file called ```main-js.js```
+
+* Now we add this js file's reference into our ```base.htnl.twig``` file. For that open the file and add bellow code there
+```sh
+.
+.
+      {% block javascripts %} {% endblock %}
+    
+    </body>
+
+</html>
+```
+
+* Add another js file's reference into our ```index.htnl.twig``` file. For that open the file and add bellow code there
+```sh
+.
+.
+{% block javascripts %}
+  <script type="text/javascript" src="/js/main-js.js"></script>
+{% endblock %}
+```
+
+* Now add some javascript into ```public/js/main-js.js``` file
+```sh
+const offices = document.getElementById('offices');
+
+if (offices) {
+  
+  offices.addEventListener('click', (e) => {
+    
+    if (e.target.className === 'btn btn-danger delete-office') {
+
+      if (confirm('Are you Sure?')) {
+
+        const id = e.target.getAttribute('data-id');
+
+        fetch(`/web/offices/delete/${id}`, {
+
+          method: 'DELETE'
+
+        }).then(res => window.location.reload());
+
+      }
+
+    }
+
+  });
+}
+```
+
+* Lets do some controlling stuff for delete method. Create a ```delete``` function into ```OfficeController.php``` with parameter $id
+```sh
+    $offices = $this->getDoctrine()->getRepository(Offices::class)->find($id);
+
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->remove($offices);
+    $entityManager->flush();
+
+    $response = new Response();
+    $response->send();
 ```
 
 # Developed By

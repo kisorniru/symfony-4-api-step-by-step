@@ -78,4 +78,17 @@ class OfficesController extends Controller
 
     }
 
+    public function delete($id){
+
+        $offices = $this->getDoctrine()->getRepository(Offices::class)->find($id);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($offices);
+        $entityManager->flush();
+
+        $response = new Response();
+        $response->send();
+
+    }
+
 }
