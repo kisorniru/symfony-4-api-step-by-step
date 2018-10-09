@@ -24,7 +24,7 @@ This documentation will help to jump start with [Symfony](https://symfony.com/).
 
 Dillinger uses a number of open source projects to work properly:
 
-* [Symfony 4.1.`*`] - Number one fastest PHP framework!
+* [Symfony 4.1.0] - Number one fastest PHP framework!
 * [Twig] -  Modern template engine for PHP.
 * [markdown-it] - Markdown parser done right. Fast and easy to extend.
 * [PhpStorm] - Super flexible and rich IDE for project development.
