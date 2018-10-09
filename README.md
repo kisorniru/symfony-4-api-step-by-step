@@ -1,8 +1,8 @@
-[![N|Solid](https://dev.vpoids.org/images/login-page-logo.png)](https://dev.vpoids.org/)
+[![N|Solid](https://symfony.com/images/v5/logos/header-logo.svg)](https://symfony.com/doc/current/index.html)
 
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This documentation will help to jump start with [Symfony](https://symfony.com/). If you are familiar with different framework of php then 
 
 ### What is this repository for? ###
 
@@ -296,15 +296,10 @@ php bin/console doctrine:migrations:migrate
 * We will come back to ```Repository```, but before that lets do something controlling stuff with ```Controller``` 
 
 * Create two file inside ```Controller``` folder called ```OfficesController.php``` and ```OfficeEmployeesController.php```
-	- Extends base ```Controller``` with this two controller
-	- Use ```Controller\Controller``` with this two controller
-	- Use ```HttpFoundation\Response``` with this two controller
-	<!-- - Use ```Serializer\SerializerInterface``` with two controller -->
+	- Extends base controller by using ```use Symfony\Bundle\FrameworkBundle\Controller\Controller;``` with this two controller
+	- ```use Symfony\Bundle\FrameworkBundle\Controller\Controller;``` with this two controller
+	- ```use Symfony\Component\HttpFoundation\Response;``` with this two controller
 
-<!-- * For Serializer we are going to use the bellow bundle. This is a complex topic. But useful for developing tools to serialize and deserialize your objects.
-```sh
-$ composer require symfony/serializer
-``` -->
 * Now we are starting with ```OfficesController.php``` controller
 * Inside ``` OfficesController.php ``` create a public function called ```index```, which will show a hello message for us. So, lets do something fun part.
 	- Run ```composer require twig``` command to add ```twig```. Twig is a view template engine. In symfony you can use two different view engine for view write. Apart from ```twig``` you can use ```php``` [ reference : https://symfony.com/doc/2.0/cookbook/templating/PHP.html]. But remember, Symfony recomand ```twig``` instead of any other things. I am using twig for this documentation.
@@ -571,7 +566,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 ``` 
-* Now inside ``` OfficesController ``` controller create another function called ```create``` and paste the bellow code
+* Now inside ``` OfficesController.php ``` controller create another function called ```create``` and paste the bellow code
 ```sh
     $pageTitle = "Create Page";
 
@@ -668,7 +663,8 @@ web_app_show:
   controller: App\Controller\OfficesController::show
 ```
 
-* Lets create a function ```show``` and pass a parameter called ```id``` inside ```OfficesController``` controller and add the bellow code
+* Lets create a function ```show``` and pass two parameter called ```$id``` and ```SerializerInterface $serializer``` inside ```OfficesController.php``` controller and add the bellow code. Here second parameter is not mendatory, This is a complex topic but I am using it to avoid unexpected null value error. To use this you have to run ```composer require symfony/serializer``` command and have to use ```use Symfony\Component\Serializer\SerializerInterface;``` in your controller.
+
 ```sh
     $pageTitle = "Show Page";
 
@@ -815,6 +811,8 @@ web_app_edit:
         'form' => $form->createView()
     ));
 ```
+
+# NOW THIS IS YOUR TURN TO POPULATE DATA DO FUN STUFF WITH ```OfficeEmployeesController.php```
 
 # Developed By
 
