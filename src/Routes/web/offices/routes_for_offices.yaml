@@ -10,6 +10,11 @@ web_app_create:
   methods: ['GET','POST']
   controller: App\Controller\OfficesController::create
 
+web_app_edit:
+  path: /edit/{id}
+  methods: ['GET','POST']
+  controller: App\Controller\OfficesController::edit
+
 web_app_show:
   path: /{id}
   methods: GET

@@ -65,6 +65,36 @@ class OfficesController extends Controller
 
     }
 
+    public function edit(Request $request, $id){
+
+        $pageTitle = "Edit Page";
+
+        $offices = $this->getDoctrine()->getRepository(Offices::class)->find($id);
+
+        $form = $this->createFormBuilder($offices)
+            ->add('office_name', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('office_description', TextareaType::class, array('attr' => array('class' => 'form-control')))
+            ->add('office_save', SubmitType::class, array('label' => 'Update', 'attr' => array('class'=>'btn btn-primary mt-3')))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('web_app_index');
+        }
+
+        return $this->render('Offices/edit.html.twig', array(
+            'title' => $pageTitle,
+            'form' => $form->createView()
+        ));
+
+    }
+
     public function show(SerializerInterface $serializer, $id){
 
         $pageTitle = "Show Page";

@@ -750,6 +750,72 @@ if (offices) {
     $response->send();
 ```
 
+* Now we are going to edit our newly created office information. For that at first we'll create a route in ``` routes_for_offices.yaml ``` file
+```sh
+web_app_edit:
+  path: /edit/{id}
+  methods: ['GET','POST']
+  controller: App\Controller\OfficesController::edit
+```
+
+* For edit something we need a view file where our current content will display. So, for that we are going to create a view file called ```edit.html.twig``` into ```templates/Offices``` folder
+```sh
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+
+                {{ form_start(form) }}
+
+                {{ form_widget(form) }}
+
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+``` 
+
+* Now come up it's controlling stuff. for that we take two parameter into a function called ```edit``` into ```OfficesController.php```. One parameter is ```$id``` and another one is ```Request $request```.
+```sh
+    $pageTitle = "Edit Page";
+
+    $offices = $this->getDoctrine()->getRepository(Offices::class)->find($id);
+
+    $form = $this->createFormBuilder($offices)
+        ->add('office_name', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('office_description', TextareaType::class, array('attr' => array('class' => 'form-control')))
+        ->add('office_save', SubmitType::class, array('label' => 'Update', 'attr' => array('class'=>'btn btn-primary mt-3')))
+        ->getForm();
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid())
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('web_app_index');
+    }
+
+    return $this->render('Offices/edit.html.twig', array(
+        'title' => $pageTitle,
+        'form' => $form->createView()
+    ));
+```
+
 # Developed By
 
 * [Md. Noor-A-Alam Siddique](https://kisorniru.github.io/)
